@@ -45,9 +45,6 @@ PowerShell:
 ```powershell
 $env:ApiSecurity__ApiKey = "troque-por-um-valor-longo-e-aleatorio"
 $env:UploadStorage__AccountEndpoint = "https://sasuploadstorage.blob.core.windows.net/"
-$env:UploadStorage__ContainerName = "uploads"
-$env:UploadStorage__SasLifetimeMinutes = "5"
-$env:UploadStorage__MaxUploadSizeBytes = "524288000"
 ```
 
 Os nomes de configuração abaixo usam `__` porque mapeiam a hierarquia do
@@ -77,7 +74,7 @@ dotnet run --project .\SasUpload.Api
 Em outro terminal:
 
 ```powershell
-$env:SAS_UPLOAD_API_KEY = $env:ApiSecurity__ApiKey
+$env:SAS_UPLOAD_API_KEY = "troque-por-um-valor-longo-e-aleatorio"
 $env:SAS_UPLOAD_API_URL = "http://localhost:5017"
 
 dotnet run --project .\SasUpload.Client -- --file .\arquivo.txt
