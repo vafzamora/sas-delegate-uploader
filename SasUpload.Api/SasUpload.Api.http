@@ -1,0 +1,23 @@
+@baseUrl = http://localhost:5017
+@apiKey = replace-with-the-same-api-key-used-by-the-api
+
+### Authorize one file upload
+POST {{baseUrl}}/api/uploads/authorize
+Content-Type: application/json
+X-Api-Key: {{apiKey}}
+
+{
+  "fileName": "example.txt",
+  "contentType": "text/plain",
+  "fileSizeBytes": 128
+}
+
+### Reject a request without an API key
+POST {{baseUrl}}/api/uploads/authorize
+Content-Type: application/json
+
+{
+  "fileName": "example.txt",
+  "contentType": "text/plain",
+  "fileSizeBytes": 128
+}

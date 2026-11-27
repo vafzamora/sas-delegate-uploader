@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="SasUpload.Api/SasUpload.Api.csproj" />
+  <Project Path="SasUpload.Client/SasUpload.Client.csproj" />
+</Solution>
