@@ -20,7 +20,8 @@ public final class ApiServer {
     private static final int MAX_REQUEST_BYTES = 16 * 1024;
     private final String apiKey;
     private final UploadSasService uploadSasService;
-    private final ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper = new ObjectMapper()
+            .disable(com.fasterxml.jackson.databind.DeserializationFeature.ACCEPT_FLOAT_AS_INT);
 
     public ApiServer() {
         apiKey = requiredEnvironment("ApiSecurity__ApiKey");
