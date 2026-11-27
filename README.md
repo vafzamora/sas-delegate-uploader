@@ -86,6 +86,36 @@ dotnet run --project .\SasUpload.Client -- --file .\arquivo.txt
 O cliente mostra somente o nome do blob e a expiração. Ele não imprime a URL
 completa com o SAS.
 
+## Versão Java
+
+A versão Java oferece o mesmo endpoint de autorização e cliente console. Ela
+requer Java 17+, Maven, Azure CLI autenticado com `az login` (ou uma Managed
+Identity no Azure) e as mesmas configurações e atribuições RBAC descritas
+acima. Execute os comandos a partir do diretório `java`.
+
+No PowerShell:
+
+```powershell
+$env:ApiSecurity__ApiKey = "troque-por-um-valor-longo-e-aleatorio"
+$env:UploadStorage__AccountEndpoint = "https://sasuploadstorage.blob.core.windows.net/"
+$env:SAS_UPLOAD_API_PORT = "5018"
+
+mvn compile exec:java "-Dexec.mainClass=com.example.sasupload.Main" '-Dexec.args=server'
+```
+
+Em outro terminal, configure a mesma API key para o cliente e envie o arquivo:
+
+```powershell
+$env:SAS_UPLOAD_API_KEY = $env:ApiSecurity__ApiKey
+$env:SAS_UPLOAD_API_URL = "http://localhost:5018"
+
+mvn compile exec:java "-Dexec.mainClass=com.example.sasupload.Main" '-Dexec.args=upload --file ..\arquivo.txt'
+```
+
+O cliente também aceita `--api-url <url>` para substituir o endereço da API.
+A API Java escuta somente em loopback por padrão. Para acesso remoto, publique-a
+atrás de um proxy HTTPS confiável; não exponha a API key por HTTP.
+
 ## Roles obrigatórias para User Delegation SAS
 
 A identidade efetiva usada pela API precisa de duas capacidades distintas.

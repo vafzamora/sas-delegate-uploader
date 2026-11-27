@@ -4,3 +4,4 @@ obj/
 *.user
 .env
 appsettings.Local.json
+java/target/
