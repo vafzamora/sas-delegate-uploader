@@ -106,7 +106,7 @@ mvn compile exec:java "-Dexec.mainClass=com.example.sasupload.Main" '-Dexec.args
 Em outro terminal, configure a mesma API key para o cliente e envie o arquivo:
 
 ```powershell
-$env:SAS_UPLOAD_API_KEY = $env:ApiSecurity__ApiKey
+$env:SAS_UPLOAD_API_KEY = "troque-por-um-valor-longo-e-aleatorio" # Use o mesmo valor configurado no terminal da API.
 $env:SAS_UPLOAD_API_URL = "http://localhost:5018"
 
 mvn compile exec:java "-Dexec.mainClass=com.example.sasupload.Main" '-Dexec.args=upload --file ..\arquivo.txt'
