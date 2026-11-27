@@ -26,7 +26,7 @@ public sealed class UploadSasService(
         var extension = Path.GetExtension(request.FileName).ToLowerInvariant();
         var now = timeProvider.GetUtcNow();
         var expiresAt = now.AddMinutes(_options.SasLifetimeMinutes);
-        var blobName = $"uploads/{SanitizeClientId(clientId)}/{now:yyyy/MM/dd}/{Guid.NewGuid():N}{extension}";
+        var blobName = $"uploads/{SanitizeClientId(clientId)}/{now:yyyy-MM-dd}/{Guid.NewGuid():N}{extension}";
         var containerClient = blobServiceClient.GetBlobContainerClient(_options.ContainerName);
         var blobClient = containerClient.GetBlobClient(blobName);
 
